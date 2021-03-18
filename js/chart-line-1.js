@@ -1,31 +1,41 @@
 var ctx = document.getElementById("myLineChart1");
-var array = [ 2988.978,
-152.44,
-4226.419,
-1581.033,
-7254.960,
-140.792];
+var array = JSON.parse(localStorage.getItem('cantipo'));
 
-var labels = [];
-var color1 = [];
-var color2 = [];
+var tipo = JSON.parse(localStorage.getItem('tipo'));
+
+var ContEE = 0;
+var ContAP = 0;
+var ContI = 0;
+var ContT = 0;
+
+for (let i = 0; i < tipo.length; i++) {
+    if (tipo[i] === "Energia Electrica") {
+        ContEE += parseFloat(array[i]);
+    }else if(tipo[i] === "Internet"){
+        ContI += parseFloat(array[i]);
+    }else if(tipo[i] === "Telefonia"){
+        ContT += parseFloat(array[i]);
+    }else if(tipo[i] === "Agua Potable"){
+        ContAP += parseFloat(array[i]);
+    }
+}
+
+var arrayTotal = [ContEE, ContI, ContT, ContAP];
+
+var labels = ["Energia Electrica", "Internet", "Telefonia", "Agua Potable"];
+
+var color1 = [];  
 
 function r() {
     return Math.random() * 256 >> 0;
 }
 
-function colora() {
+function color() {
     return `rgb(${r()}, ${r()}, ${r()}, 0.2)`;    
 }
 
-function color() {
-    return `rgb(${r()}, ${r()}, ${r()})`;    
-}
-
 for (let i = 0; i < array.length; i++) {
-    color1.push(colora());
-    color2.push(color());
-    labels.push('Retiro '+(i+1));
+    color1.push(color());
 }
 
 var myChart = new Chart(ctx, {
@@ -33,10 +43,9 @@ var myChart = new Chart(ctx, {
   data: {
       labels: labels,
       datasets: [{
-          label: 'Cantidad de Retiro en USD',
-          data: array,
+          label: 'Cantidad de Pagos en USD por Categorias',
+          data: arrayTotal,
           backgroundColor: color1,
-          borderColor: color2,
           borderWidth: 1
       }]
   },

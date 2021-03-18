@@ -5,6 +5,7 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <link rel="shortcut icon" href="images/favicon.ico">
 
   <title>Cajero - Graficas</title>
 
@@ -28,9 +29,9 @@
 <body>
 
   <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-pokemon fixed-top">
     <div class="container">
-      <a class="navbar-brand" href="#">Start Bootstrap</a>
+      <a class="navbar-brand" href="#"><img src="images/logo_horizontal.png" width="130px"></a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -64,7 +65,7 @@
                 Depositos Efectuados
             </div>
             <div class="card-body chart-container"><canvas id="myBarChart1"></canvas></div>
-            <div class="card-footer"><button type="button" class="btn btn-secondary download-pdf1">Descargar</button></div>
+            <div class="card-footer"><button type="button" class="btn btn-primary download-pdf1">Descargar</button></div>
         </div>
 
         <!-- /.row --> 
@@ -74,19 +75,29 @@
               <i class="fas fa-chart-line mr-1"></i>
               Retiros Efectuados
           </div>
-          <div class="card-body chart-container"><canvas id="myLineChart1"></canvas></div>
-          <div class="card-footer"><button type="button" class="btn btn-secondary download-pdf2">Descargar</button></div>          
-      </div>        
+          <div class="card-body chart-container"><canvas id="myBarChart2"></canvas></div>
+          <div class="card-footer"><button type="button" class="btn btn-primary download-pdf2">Descargar</button></div>          
+      </div>       
 
+        <!-- /.row --> 
+        
+        <div class="card mb-4">
+          <div class="card-header">
+              <i class="fas fa-chart-bar mr-1"></i>
+              Pagos por Servicios
+          </div>
+          <div class="card-body chart-container"><canvas id="myLineChart1"></canvas></div>
+          <div class="card-footer"><button type="button" class="btn btn-primary download-pdf3">Descargar</button></div>          
+      </div>   
     </div>
 
   </div>
   <!-- /.container -->
 
   <!-- Footer -->
-  <footer class="py-5 bg-dark">
+  <footer class="py-5 bg-pokemon">
     <div class="container">
-      <p class="m-0 text-center text-white">Copyright &copy; Bootstrap 2021</p>
+      <p class="m-0 text-center text-white">Copyright &copy; Pokemon Bank 2021</p>
     </div>
     <!-- /.container -->
   </footer>
@@ -94,11 +105,13 @@
   <!-- Bootstrap core JavaScript -->
   <script src="vendor/jquery/jquery.min.js"></script>
   <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/userconect.js"></script>
 
   <!-- ChartJS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
   <script src="js/chart-bar-1.js"></script>
   <script src="js/chart-line-1.js"></script>
+  <script src="js/chart-bar-2.js"></script>  
 
   <!-- JSPDF -->
   <script src="js/jspdf.min.js"></script>

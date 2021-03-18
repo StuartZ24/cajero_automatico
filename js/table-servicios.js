@@ -1,14 +1,10 @@
-var table1 = document.getElementById("table1");
+var table2 = document.getElementById("table3");
 
-var array = JSON.parse(localStorage.getItem('deposito'));
+var array = JSON.parse(localStorage.getItem('cantipo'));
 
-var labels = [];
+var tipo = JSON.parse(localStorage.getItem('tipo'));
 
-for (let i = 0; i < array.length; i++) {
-    labels.push('Deposito '+(i+1));
-}
-
-var matriz = [labels, array];
+var matriz = [tipo, array];
 var traspuesta = new Array(array.length);
 
 for (let k = 0; k < array.length; k++) {
@@ -29,5 +25,5 @@ for (row=0; row < traspuesta.length; row++){
         td.appendChild(tn);
         tr.appendChild(td);
     }
-table1.appendChild(tr);
-}
+table3.appendChild(tr);
+} 

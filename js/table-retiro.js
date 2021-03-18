@@ -1,11 +1,6 @@
 var table2 = document.getElementById("table2");
 
-var array = [ 2988.978,
-152.44,
-4226.419,
-1581.033,
-7254.960,
-140.792];
+var array = JSON.parse(localStorage.getItem('retiro'));
 
 var labels = [];
 

@@ -6,3 +6,7 @@
 body {
   padding-top: 56px;
 }
+
+.bg-pokemon{
+  background-color: #3462AD !important;
+}
