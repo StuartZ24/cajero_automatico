@@ -47,12 +47,16 @@ form.addEventListener("submit", function(event) {
             swal("Error!", nameArr[i]+"!", "error");
         }        
     }else{
-        localStorage.setItem('user',JSON.stringify(user));
-        localStorage.setItem('saldo',JSON.stringify(saldo));
-        localStorage.setItem('deposito', JSON.stringify(deposito));
-        localStorage.setItem('retiro', JSON.stringify(retiro));
-        localStorage.setItem('tipo', JSON.stringify(tipo));
-        localStorage.setItem('cantipo', JSON.stringify(cantipo));
-        location.href = 'page.html';
+        if (password.value != 1234) {
+            swal("Error!", "Pin Incorrecto!", "error");
+        } else {
+            localStorage.setItem('user',JSON.stringify(user));
+            localStorage.setItem('saldo',JSON.stringify(saldo));
+            localStorage.setItem('deposito', JSON.stringify(deposito));
+            localStorage.setItem('retiro', JSON.stringify(retiro));
+            localStorage.setItem('tipo', JSON.stringify(tipo));
+            localStorage.setItem('cantipo', JSON.stringify(cantipo));
+            location.href = 'page.html';            
+        }
     }
 });
