@@ -3,6 +3,16 @@ const boton2 = document.querySelector(".btn-2");
 const boton3 = document.querySelector(".btn-3");
 const boton4 = document.querySelector(".btn-4");
 
+//Funcion para validar un numero decimal con 2 decimales de precision
+function validateDecimal(valor) {
+  var RE = /^\d*(\.\d{1})?\d{0,1}$/;
+  if (RE.test(valor)) {
+      return true;
+  } else {
+      return false;
+  }
+}
+
 // Agregar listeners
 boton1.addEventListener("click", function(evento){
   // Aquí todo el código que se ejecuta cuando se da click al botón
@@ -15,25 +25,29 @@ boton1.addEventListener("click", function(evento){
       } else {
         cant = Number(value)
         if (validate.isNumber(cant)) {
-          //si no hay nada guardado al principio, guarde un arreglo vacío
-          if(localStorage.getItem('deposito') == null){
-            localStorage.setItem('deposito','[]');
+          if (validateDecimal(value) == true) {
+            //si no hay nada guardado al principio, guarde un arreglo vacío
+            if(localStorage.getItem('deposito') == null){
+              localStorage.setItem('deposito','[]');
+            }
+
+            //obtener los datos antiguos y agregarlos a los datos nuevos
+            var old_data = JSON.parse(localStorage.getItem('deposito'));
+            var newvalue = parseFloat(value);
+            old_data.push(newvalue.toFixed(2));
+
+            //guardar los datos antiguos + nuevos en el local Storage
+            localStorage.setItem('deposito', JSON.stringify(old_data));
+
+            var saldo = JSON.parse(localStorage.getItem('saldo'));
+            saldo = parseFloat(saldo);
+            saldo += newvalue;
+
+            localStorage.setItem('saldo', JSON.stringify(saldo));
+            swal("Completado!", "Ha depositado correctamente!", "success");            
+          } else {
+            swal("Error!", "Numero decimal no valido!, Digite de nuevo", "error");            
           }
-
-          //obtener los datos antiguos y agregarlos a los datos nuevos
-          var old_data = JSON.parse(localStorage.getItem('deposito'));
-          var newvalue = parseFloat(value);
-          old_data.push(newvalue.toFixed(2));
-
-          //guardar los datos antiguos + nuevos en el local Storage
-          localStorage.setItem('deposito', JSON.stringify(old_data));
-
-          var saldo = JSON.parse(localStorage.getItem('saldo'));
-          saldo = parseFloat(saldo);
-          saldo += newvalue;
-
-          localStorage.setItem('saldo', JSON.stringify(saldo));
-          swal("Completado!", "Ha depositado correctamente!", "success");
         } else {
           swal("Error!", "Usted no digito ningun numero!", "error");
         }             
@@ -61,24 +75,27 @@ boton2.addEventListener("click", function(evento){
           if (newvalue > saldo) {
             swal("Error!", "Usted no puede retirar mas dinero del que tiene disponible!", "error");
           } else {
-            //si no hay nada guardado al principio, guarde un arreglo vacío
-            if(localStorage.getItem('retiro') == null){
-              localStorage.setItem('retiro','[]');
-            }
+            if (validateDecimal(value) == true) {
+              //si no hay nada guardado al principio, guarde un arreglo vacío
+              if(localStorage.getItem('retiro') == null){
+                localStorage.setItem('retiro','[]');
+              }
+              //obtener los datos antiguos y agregarlos a los datos nuevos
+              var old_data = JSON.parse(localStorage.getItem('retiro'));
+              old_data.push(newvalue.toFixed(2));
 
-            //obtener los datos antiguos y agregarlos a los datos nuevos
-            var old_data = JSON.parse(localStorage.getItem('retiro'));
-            old_data.push(newvalue.toFixed(2));
+              //guardar los datos antiguos + nuevos en el local Storage
+              localStorage.setItem('retiro', JSON.stringify(old_data));  
 
-            //guardar los datos antiguos + nuevos en el local Storage
-            localStorage.setItem('retiro', JSON.stringify(old_data));  
-
-            var saldo = JSON.parse(localStorage.getItem('saldo'));
-            saldo = parseFloat(saldo);
-            saldo -= newvalue;
-  
-            localStorage.setItem('saldo', JSON.stringify(saldo));
-            swal("Completado!", "Ha retirado correctamente!", "success");            
+              var saldo = JSON.parse(localStorage.getItem('saldo'));
+              saldo = parseFloat(saldo);
+              saldo -= newvalue;
+    
+              localStorage.setItem('saldo', JSON.stringify(saldo));
+              swal("Completado!", "Ha retirado correctamente!", "success");             
+            } else {
+              swal("Error!", "Numero decimal no valido!, Digite de nuevo", "error");            
+            }           
           }
         } else {
           swal("Error!", "Usted no digito ningun numero!", "error");
@@ -139,38 +156,42 @@ boton4.addEventListener("click", function(evento){
                 if (newvalue > saldo) {
                   swal("Error!", "Usted no puede pagar mas dinero del que tiene disponible!", "error");
                 } else {
-                  //Tipo de Servicio
-                  //si no hay nada guardado al principio, guarde un arreglo vacío
-                  if(localStorage.getItem('tipo') == null){
-                    localStorage.setItem('tipo','[]');
-                  }
+                  if (validateDecimal(value) == true) {
+                    //Tipo de Servicio
+                    //si no hay nada guardado al principio, guarde un arreglo vacío
+                    if(localStorage.getItem('tipo') == null){
+                      localStorage.setItem('tipo','[]');
+                    }
 
-                  //obtener los datos antiguos y agregarlos a los datos nuevos
-                  var old_data_t = JSON.parse(localStorage.getItem('tipo'));
-                  old_data_t.push("Energia Electrica");
+                    //obtener los datos antiguos y agregarlos a los datos nuevos
+                    var old_data_t = JSON.parse(localStorage.getItem('tipo'));
+                    old_data_t.push("Energia Electrica");
 
-                  //guardar los datos antiguos + nuevos en el local Storage
-                  localStorage.setItem('tipo', JSON.stringify(old_data_t));
+                    //guardar los datos antiguos + nuevos en el local Storage
+                    localStorage.setItem('tipo', JSON.stringify(old_data_t));
 
-                  //Cantidad a Pagar
-                  //si no hay nada guardado al principio, guarde un arreglo vacío
-                  if(localStorage.getItem('cantipo') == null){
-                    localStorage.setItem('cantipo','[]');
-                  }
+                    //Cantidad a Pagar
+                    //si no hay nada guardado al principio, guarde un arreglo vacío
+                    if(localStorage.getItem('cantipo') == null){
+                      localStorage.setItem('cantipo','[]');
+                    }
 
-                  //obtener los datos antiguos y agregarlos a los datos nuevos
-                  var old_data_ct = JSON.parse(localStorage.getItem('cantipo'));
-                  old_data_ct.push(newvalue.toFixed(2));
+                    //obtener los datos antiguos y agregarlos a los datos nuevos
+                    var old_data_ct = JSON.parse(localStorage.getItem('cantipo'));
+                    old_data_ct.push(newvalue.toFixed(2));
 
-                  //guardar los datos antiguos + nuevos en el local Storage
-                  localStorage.setItem('cantipo', JSON.stringify(old_data_ct));
-                  
-                  var saldo = JSON.parse(localStorage.getItem('saldo'));
-                  saldo = parseFloat(saldo);
-                  saldo -= newvalue;
-        
-                  localStorage.setItem('saldo', JSON.stringify(saldo));                  
-                  swal("Completado!", "Ha pagado correctamente!", "success");                
+                    //guardar los datos antiguos + nuevos en el local Storage
+                    localStorage.setItem('cantipo', JSON.stringify(old_data_ct));
+                    
+                    var saldo = JSON.parse(localStorage.getItem('saldo'));
+                    saldo = parseFloat(saldo);
+                    saldo -= newvalue;
+          
+                    localStorage.setItem('saldo', JSON.stringify(saldo));                  
+                    swal("Completado!", "Ha pagado correctamente!", "success");                      
+                  } else {
+                    swal("Error!", "Numero decimal no valido!, Digite de nuevo", "error");            
+                  }              
                 }
               } else {
                 swal("Error!", "Usted no digito ningun numero!", "error");
@@ -198,38 +219,42 @@ boton4.addEventListener("click", function(evento){
                 if (newvalue > saldo) {
                   swal("Error!", "Usted no puede pagar mas dinero del que tiene disponible!", "error");
                 } else {
-                  //Tipo de Servicio
-                  //si no hay nada guardado al principio, guarde un arreglo vacío
-                  if(localStorage.getItem('tipo') == null){
-                    localStorage.setItem('tipo','[]');
-                  }
+                  if (validateDecimal(value) == true) {
+                    //Tipo de Servicio
+                    //si no hay nada guardado al principio, guarde un arreglo vacío
+                    if(localStorage.getItem('tipo') == null){
+                      localStorage.setItem('tipo','[]');
+                    }
 
-                  //obtener los datos antiguos y agregarlos a los datos nuevos
-                  var old_data_t = JSON.parse(localStorage.getItem('tipo'));
-                  old_data_t.push("Internet");
+                    //obtener los datos antiguos y agregarlos a los datos nuevos
+                    var old_data_t = JSON.parse(localStorage.getItem('tipo'));
+                    old_data_t.push("Internet");
 
-                  //guardar los datos antiguos + nuevos en el local Storage
-                  localStorage.setItem('tipo', JSON.stringify(old_data_t));
+                    //guardar los datos antiguos + nuevos en el local Storage
+                    localStorage.setItem('tipo', JSON.stringify(old_data_t));
 
-                  //Cantidad a Pagar
-                  //si no hay nada guardado al principio, guarde un arreglo vacío
-                  if(localStorage.getItem('cantipo') == null){
-                    localStorage.setItem('cantipo','[]');
-                  }
+                    //Cantidad a Pagar
+                    //si no hay nada guardado al principio, guarde un arreglo vacío
+                    if(localStorage.getItem('cantipo') == null){
+                      localStorage.setItem('cantipo','[]');
+                    }
 
-                  //obtener los datos antiguos y agregarlos a los datos nuevos
-                  var old_data_ct = JSON.parse(localStorage.getItem('cantipo'));
-                  old_data_ct.push(newvalue.toFixed(2));
+                    //obtener los datos antiguos y agregarlos a los datos nuevos
+                    var old_data_ct = JSON.parse(localStorage.getItem('cantipo'));
+                    old_data_ct.push(newvalue.toFixed(2));
 
-                  //guardar los datos antiguos + nuevos en el local Storage
-                  localStorage.setItem('cantipo', JSON.stringify(old_data_ct));
-                  
-                  var saldo = JSON.parse(localStorage.getItem('saldo'));
-                  saldo = parseFloat(saldo);
-                  saldo -= newvalue;
-        
-                  localStorage.setItem('saldo', JSON.stringify(saldo));                  
-                  swal("Completado!", "Ha pagado correctamente!", "success");                
+                    //guardar los datos antiguos + nuevos en el local Storage
+                    localStorage.setItem('cantipo', JSON.stringify(old_data_ct));
+                    
+                    var saldo = JSON.parse(localStorage.getItem('saldo'));
+                    saldo = parseFloat(saldo);
+                    saldo -= newvalue;
+          
+                    localStorage.setItem('saldo', JSON.stringify(saldo));                  
+                    swal("Completado!", "Ha pagado correctamente!", "success");             
+                  } else {
+                    swal("Error!", "Numero decimal no valido!, Digite de nuevo", "error");            
+                  }                                   
                 }                 
               } else {
                 swal("Error!", "Usted no digito ningun numero!", "error");
@@ -257,38 +282,42 @@ boton4.addEventListener("click", function(evento){
                 if (newvalue > saldo) {
                   swal("Error!", "Usted no puede pagar mas dinero del que tiene disponible!", "error");
                 } else {
-                  //Tipo de Servicio
-                  //si no hay nada guardado al principio, guarde un arreglo vacío
-                  if(localStorage.getItem('tipo') == null){
-                    localStorage.setItem('tipo','[]');
-                  }
+                  if (validateDecimal(value) == true) {
+                    //Tipo de Servicio
+                    //si no hay nada guardado al principio, guarde un arreglo vacío
+                    if(localStorage.getItem('tipo') == null){
+                      localStorage.setItem('tipo','[]');
+                    }
 
-                  //obtener los datos antiguos y agregarlos a los datos nuevos
-                  var old_data_t = JSON.parse(localStorage.getItem('tipo'));
-                  old_data_t.push("Telefonia");
+                    //obtener los datos antiguos y agregarlos a los datos nuevos
+                    var old_data_t = JSON.parse(localStorage.getItem('tipo'));
+                    old_data_t.push("Telefonia");
 
-                  //guardar los datos antiguos + nuevos en el local Storage
-                  localStorage.setItem('tipo', JSON.stringify(old_data_t));
+                    //guardar los datos antiguos + nuevos en el local Storage
+                    localStorage.setItem('tipo', JSON.stringify(old_data_t));
 
-                  //Cantidad a Pagar
-                  //si no hay nada guardado al principio, guarde un arreglo vacío
-                  if(localStorage.getItem('cantipo') == null){
-                    localStorage.setItem('cantipo','[]');
-                  }
+                    //Cantidad a Pagar
+                    //si no hay nada guardado al principio, guarde un arreglo vacío
+                    if(localStorage.getItem('cantipo') == null){
+                      localStorage.setItem('cantipo','[]');
+                    }
 
-                  //obtener los datos antiguos y agregarlos a los datos nuevos
-                  var old_data_ct = JSON.parse(localStorage.getItem('cantipo'));
-                  old_data_ct.push(newvalue.toFixed(2));
+                    //obtener los datos antiguos y agregarlos a los datos nuevos
+                    var old_data_ct = JSON.parse(localStorage.getItem('cantipo'));
+                    old_data_ct.push(newvalue.toFixed(2));
 
-                  //guardar los datos antiguos + nuevos en el local Storage
-                  localStorage.setItem('cantipo', JSON.stringify(old_data_ct));
-                  
-                  var saldo = JSON.parse(localStorage.getItem('saldo'));
-                  saldo = parseFloat(saldo);
-                  saldo -= newvalue;
-        
-                  localStorage.setItem('saldo', JSON.stringify(saldo));                  
-                  swal("Completado!", "Ha pagado correctamente!", "success");                
+                    //guardar los datos antiguos + nuevos en el local Storage
+                    localStorage.setItem('cantipo', JSON.stringify(old_data_ct));
+                    
+                    var saldo = JSON.parse(localStorage.getItem('saldo'));
+                    saldo = parseFloat(saldo);
+                    saldo -= newvalue;
+          
+                    localStorage.setItem('saldo', JSON.stringify(saldo));                  
+                    swal("Completado!", "Ha pagado correctamente!", "success");               
+                  } else {
+                    swal("Error!", "Numero decimal no valido!, Digite de nuevo", "error");            
+                  }             
                 }
               } else {
                 swal("Error!", "Usted no digito ningun numero!", "error");
@@ -316,38 +345,42 @@ boton4.addEventListener("click", function(evento){
                 if (newvalue > saldo) {
                   swal("Error!", "Usted no puede pagar mas dinero del que tiene disponible!", "error");
                 } else {
-                  //Tipo de Servicio
-                  //si no hay nada guardado al principio, guarde un arreglo vacío
-                  if(localStorage.getItem('tipo') == null){
-                    localStorage.setItem('tipo','[]');
-                  }
+                    if (validateDecimal(value) == true) {
+                    //Tipo de Servicio
+                    //si no hay nada guardado al principio, guarde un arreglo vacío
+                    if(localStorage.getItem('tipo') == null){
+                      localStorage.setItem('tipo','[]');
+                    }
 
-                  //obtener los datos antiguos y agregarlos a los datos nuevos
-                  var old_data_t = JSON.parse(localStorage.getItem('tipo'));
-                  old_data_t.push("Agua Potable");
+                    //obtener los datos antiguos y agregarlos a los datos nuevos
+                    var old_data_t = JSON.parse(localStorage.getItem('tipo'));
+                    old_data_t.push("Agua Potable");
 
-                  //guardar los datos antiguos + nuevos en el local Storage
-                  localStorage.setItem('tipo', JSON.stringify(old_data_t));
+                    //guardar los datos antiguos + nuevos en el local Storage
+                    localStorage.setItem('tipo', JSON.stringify(old_data_t));
 
-                  //Cantidad a Pagar
-                  //si no hay nada guardado al principio, guarde un arreglo vacío
-                  if(localStorage.getItem('cantipo') == null){
-                    localStorage.setItem('cantipo','[]');
-                  }
+                    //Cantidad a Pagar
+                    //si no hay nada guardado al principio, guarde un arreglo vacío
+                    if(localStorage.getItem('cantipo') == null){
+                      localStorage.setItem('cantipo','[]');
+                    }
 
-                  //obtener los datos antiguos y agregarlos a los datos nuevos
-                  var old_data_ct = JSON.parse(localStorage.getItem('cantipo'));
-                  old_data_ct.push(newvalue.toFixed(2));
+                    //obtener los datos antiguos y agregarlos a los datos nuevos
+                    var old_data_ct = JSON.parse(localStorage.getItem('cantipo'));
+                    old_data_ct.push(newvalue.toFixed(2));
 
-                  //guardar los datos antiguos + nuevos en el local Storage
-                  localStorage.setItem('cantipo', JSON.stringify(old_data_ct));
-                  
-                  var saldo = JSON.parse(localStorage.getItem('saldo'));
-                  saldo = parseFloat(saldo);
-                  saldo -= newvalue;
-        
-                  localStorage.setItem('saldo', JSON.stringify(saldo));                  
-                  swal("Completado!", "Ha pagado correctamente!", "success");                
+                    //guardar los datos antiguos + nuevos en el local Storage
+                    localStorage.setItem('cantipo', JSON.stringify(old_data_ct));
+                    
+                    var saldo = JSON.parse(localStorage.getItem('saldo'));
+                    saldo = parseFloat(saldo);
+                    saldo -= newvalue;
+          
+                    localStorage.setItem('saldo', JSON.stringify(saldo));                  
+                    swal("Completado!", "Ha pagado correctamente!", "success");              
+                  } else {
+                    swal("Error!", "Numero decimal no valido!, Digite de nuevo", "error");            
+                  }                                  
                 }
               } else {
                 swal("Error!", "Usted no digito ningun numero!", "error");
