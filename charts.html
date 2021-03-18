@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Cajero - Graficas</title>
+
+  <!-- Bootstrap core CSS -->
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="css/heroic-features.css" rel="stylesheet">
+
+  <!-- FontAwesome -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/js/all.min.js" crossorigin="anonymous"></script>
+
+</head>
+<style type="text/css">
+    .chart-container {
+      width: 100%;
+      margin: 10px auto;
+    }
+   </style>
+
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+      <a class="navbar-brand" href="#">Start Bootstrap</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="page.html">Inicio</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="tables.html">Historial</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="charts.html">Transacciones
+              <span class="sr-only">(current)</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page Content -->
+  <div class="container">   
+
+    <!-- Page Features -->
+    <div class="container-fluid my-4">
+
+        <div class="card mb-4">
+            <div class="card-header">
+                <i class="fas fa-chart-bar mr-1"></i>
+                Depositos Efectuados
+            </div>
+            <div class="card-body chart-container"><canvas id="myBarChart1"></canvas></div>
+            <div class="card-footer"><button type="button" class="btn btn-secondary download-pdf1">Descargar</button></div>
+        </div>
+
+        <!-- /.row --> 
+        
+        <div class="card mb-4">
+          <div class="card-header">
+              <i class="fas fa-chart-line mr-1"></i>
+              Retiros Efectuados
+          </div>
+          <div class="card-body chart-container"><canvas id="myLineChart1"></canvas></div>
+          <div class="card-footer"><button type="button" class="btn btn-secondary download-pdf2">Descargar</button></div>          
+      </div>        
+
+    </div>
+
+  </div>
+  <!-- /.container -->
+
+  <!-- Footer -->
+  <footer class="py-5 bg-dark">
+    <div class="container">
+      <p class="m-0 text-center text-white">Copyright &copy; Bootstrap 2021</p>
+    </div>
+    <!-- /.container -->
+  </footer>
+
+  <!-- Bootstrap core JavaScript -->
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  <!-- ChartJS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.4/Chart.js"></script>
+  <script src="js/chart-bar-1.js"></script>
+  <script src="js/chart-line-1.js"></script>
+
+  <!-- JSPDF -->
+  <script src="js/jspdf.min.js"></script>
+
+  <!-- Operaction Download PDF -->
+  <script src="js/downloadpdf.js"></script>
+
+</body>
+
+</html>
