@@ -44,10 +44,8 @@ for (let col2 = 0; col2 < 2; col2++) {
     th = document.createElement('th')
     if(col2 == 0)
     {
-        console.log('total');
         tn = document.createTextNode('Total');
     }else{
-        console.log(sumtotal);
         tn = document.createTextNode(sumtotal.toFixed(2));
     }
     th.appendChild(tn);
