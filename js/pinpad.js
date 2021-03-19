@@ -25,7 +25,7 @@ $( "#PINcode" ).html(
 );
 
 var user = "Stuardo Rodríguez";
-var saldo = 1500;
+var saldo = 500;
 var deposito = [];
 var retiro = [];
 var tipo = [];
