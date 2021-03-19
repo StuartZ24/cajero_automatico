@@ -1,8 +1,15 @@
 var table2 = document.getElementById("table3");
+var tfoot3 = document.getElementById("tfoot3");
 
 var array = JSON.parse(localStorage.getItem('cantipo'));
 
 var tipo = JSON.parse(localStorage.getItem('tipo'));
+
+var sumtotal = 0;
+
+for (let i = 0; i < array.length; i++) {
+    sumtotal += parseFloat(array[i]);
+}
 
 var matriz = [tipo, array];
 var traspuesta = new Array(array.length);
@@ -27,3 +34,19 @@ for (row=0; row < traspuesta.length; row++){
     }
 table3.appendChild(tr);
 } 
+
+tr2 = document.createElement('tr')
+for (let col2 = 0; col2 < 2; col2++) {
+    th = document.createElement('th')
+    if(col2 == 0)
+    {
+        console.log('total');
+        tn = document.createTextNode('Total');
+    }else{
+        console.log(sumtotal);
+        tn = document.createTextNode(sumtotal.toFixed(2));
+    }
+    th.appendChild(tn);
+    tr2.appendChild(th);
+}
+tfoot3.appendChild(tr2);
