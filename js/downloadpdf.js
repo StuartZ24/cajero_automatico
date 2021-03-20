@@ -1,56 +1,57 @@
-botonpdf1 = document.querySelector('.download-pdf1');
-botonpdf2 = document.querySelector('.download-pdf2');
-botonpdf3 = document.querySelector('.download-pdf3');
+botonpdf1 = document.querySelector('.download-pdf1');       //Aqui mandamos a buscar el boton de descarga de la grafica 1
+botonpdf2 = document.querySelector('.download-pdf2');       //Aqui mandamos a buscar el boton de descarga de la grafica 2
+botonpdf3 = document.querySelector('.download-pdf3');       //Aqui mandamos a buscar el boton de descarga de la grafica 3
 
-botonpdf1.addEventListener("click", function(evento){
-  downloadPDF();
+botonpdf1.addEventListener("click", function(evento){       // Aquí todo el código que se ejecuta cuando se da click al botón de descarga 1
+  downloadPDF();                                            //Aqui mandamos a llamar la funcion de descarga de la grafica 1
 });
 
-botonpdf2.addEventListener("click", function(evento){
-  downloadPDF2();
+botonpdf2.addEventListener("click", function(evento){       // Aquí todo el código que se ejecuta cuando se da click al botón de descarga 2
+  downloadPDF2();                                           //Aqui mandamos a llamar la funcion de descarga de la grafica 2
 })
 
-botonpdf3.addEventListener("click", function(evento){
-  downloadPDF3();
+botonpdf3.addEventListener("click", function(evento){       // Aquí todo el código que se ejecuta cuando se da click al botón de descarga 3
+  downloadPDF3();                                           //Aqui mandamos a llamar la funcion de descarga de la grafica 3
 }) 
-//donwload pdf from original canvas
+
+//Funcion para descargar pdf del canvas de la grafica 1
 function downloadPDF() {
-var canvas = document.querySelector('#myBarChart1');
-//creates image
-var canvasImg = canvas.toDataURL("image/jpeg");
+var canvas = document.querySelector('#myBarChart1');        //Aqui mandamos a buscar el elemento canvas donde dibujaremos el grafico 1
+//Crear una imagen
+var canvasImg = canvas.toDataURL("image/jpeg");             //Generamos una imagen del canvas y la guardamos en una variable
 
-//creates PDF from img
-var doc = new jsPDF('landscape');
-doc.setFontSize(20);
-doc.text(15, 15, "Grafica de movimiento");
-doc.addImage(canvasImg, 'JPEG', 10, 10, 280, 150 );
-doc.save('Depositos.pdf');
+//Crear PDF para la imagen
+var doc = new jsPDF('landscape');                           //Creamos un nuevo PDF de orientacion horizontal
+doc.setFontSize(20);                                        //Establecemos el tamaño de fuente para los próximos elementos de texto
+doc.text(15, 15, "Grafica de movimiento");                  //Agregamos texto al documento
+doc.addImage(canvasImg, 'JPEG', 10, 10, 280, 150 );         //Agregamos una imagen al documento
+doc.save('Depositos.pdf');                                  //Guardamos como documentos PDF
 }
 
-//donwload pdf from original canvas
+//Funcion para descargar pdf del canvas de la grafica 2
 function downloadPDF2() {
-var canvas = document.querySelector('#myBarChart2');
-//creates image
-var canvasImg = canvas.toDataURL("image/jpeg");
+var canvas = document.querySelector('#myBarChart2');        //Aqui mandamos a buscar el elemento canvas donde dibujaremos el grafico 2
+//Crear una imagen
+var canvasImg = canvas.toDataURL("image/jpeg");             //Generamos una imagen del canvas y la guardamos en una variable
 
-//creates PDF from img
-var doc = new jsPDF('landscape');
-doc.setFontSize(20);
-doc.text(15, 15, "Grafica de movimiento");
-doc.addImage(canvasImg, 'JPEG', 10, 10, 280, 150 );
-doc.save('Retiros.pdf');
+//Crear PDF para la imagen
+var doc = new jsPDF('landscape');                           //Creamos un nuevo PDF de orientacion horizontal
+doc.setFontSize(20);                                        //Establecemos el tamaño de fuente para los próximos elementos de texto  
+doc.text(15, 15, "Grafica de movimiento");                  //Agregamos texto al documento
+doc.addImage(canvasImg, 'JPEG', 10, 10, 280, 150 );         //Agregamos una imagen al documento
+doc.save('Retiros.pdf');                                    //Guardamos como documentos PDF
 }
 
-//donwload pdf from original canvas
+//Funcion para descargar pdf del canvas de la grafica 3
 function downloadPDF3() {
-var canvas = document.querySelector('#myLineChart1');
-//creates image
-var canvasImg = canvas.toDataURL("image/jpeg");
+var canvas = document.querySelector('#myLineChart1');       //Aqui mandamos a buscar el elemento canvas donde dibujaremos el grafico 3
+//Crear una imagen
+var canvasImg = canvas.toDataURL("image/jpeg");             //Generamos una imagen del canvas y la guardamos en una variable
 
-//creates PDF from img
-var doc = new jsPDF('landscape');
-doc.setFontSize(20);
-doc.text(15, 15, "Grafica de movimiento");
-doc.addImage(canvasImg, 'JPEG', 10, 10, 280, 150 );
-doc.save('Pagos_Servicios.pdf');
+//Crear PDF para la imagen
+var doc = new jsPDF('landscape');                           //Creamos un nuevo PDF de orientacion horizontal
+doc.setFontSize(20);                                        //Establecemos el tamaño de fuente para los próximos elementos de texto
+doc.text(15, 15, "Grafica de movimiento");                  //Agregamos texto al documento
+doc.addImage(canvasImg, 'JPEG', 10, 10, 280, 150 );         //Agregamos una imagen al documento
+doc.save('Pagos_Servicios.pdf');                            //Guardamos como documentos PDF
 } 
