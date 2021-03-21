@@ -22,8 +22,6 @@ var canvasImg = canvas.toDataURL("image/jpeg");             //Generamos una imag
 
 //Crear PDF para la imagen
 var doc = new jsPDF('landscape');                           //Creamos un nuevo PDF de orientacion horizontal
-doc.setFontSize(20);                                        //Establecemos el tamaño de fuente para los próximos elementos de texto
-doc.text(15, 15, "Grafica de movimiento");                  //Agregamos texto al documento
 doc.addImage(canvasImg, 'JPEG', 10, 10, 280, 150 );         //Agregamos una imagen al documento
 doc.save('Depositos.pdf');                                  //Guardamos como documentos PDF
 }
@@ -36,8 +34,6 @@ var canvasImg = canvas.toDataURL("image/jpeg");             //Generamos una imag
 
 //Crear PDF para la imagen
 var doc = new jsPDF('landscape');                           //Creamos un nuevo PDF de orientacion horizontal
-doc.setFontSize(20);                                        //Establecemos el tamaño de fuente para los próximos elementos de texto  
-doc.text(15, 15, "Grafica de movimiento");                  //Agregamos texto al documento
 doc.addImage(canvasImg, 'JPEG', 10, 10, 280, 150 );         //Agregamos una imagen al documento
 doc.save('Retiros.pdf');                                    //Guardamos como documentos PDF
 }
@@ -50,8 +46,6 @@ var canvasImg = canvas.toDataURL("image/jpeg");             //Generamos una imag
 
 //Crear PDF para la imagen
 var doc = new jsPDF('landscape');                           //Creamos un nuevo PDF de orientacion horizontal
-doc.setFontSize(20);                                        //Establecemos el tamaño de fuente para los próximos elementos de texto
-doc.text(15, 15, "Grafica de movimiento");                  //Agregamos texto al documento
 doc.addImage(canvasImg, 'JPEG', 10, 10, 280, 150 );         //Agregamos una imagen al documento
 doc.save('Pagos_Servicios.pdf');                            //Guardamos como documentos PDF
 } 
